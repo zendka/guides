@@ -2,6 +2,23 @@
 
 /**
  * Register Guides post types
+ *
+ * @return array Array with the keys representing the labels and the values representing the post types
+ */
+function guides_get_post_types() {
+	$post_types = array();
+
+	$countries = get_option( 'guides_countries' );
+	foreach ( $countries as $country ) {
+		// The post type has max. 20 characters and cannot contain capital letters or spaces
+		$post_type = substr( sanitize_key( $country ), 0, 20 );
+		$post_types[$country] = $post_type;
+	}
+	return $post_types;
+}
+
+/**
+ * Register Guides post types
  */
 add_action( 'init', 'guides_register_post_types', 0 );
 function guides_register_post_types() {
@@ -41,12 +58,13 @@ function guides_register_post_types() {
 		'map_meta_cap'        => true,
 	);
 
-	$countries = guides_get_countries();
-	asort( $countries );
-	foreach ( $countries as $country_code => $country_name ) {
-		$args['labels']['name']  = $country_name;
-		$args['capability_type'] = $capability_type = $country_code . '_guide';
-		register_post_type( $country_code, $args );
+	$post_types = guides_get_post_types();
+	foreach ( $post_types as $label => $post_type ) {
+		$args['labels']['name']  = $label;
+		$args['capability_type'] = $capability_type = $post_type . '_guide';
+		$args['rewrite']['slug'] = sanitize_title($label);
+
+		register_post_type( $post_type, $args );
 	}
 }
 
