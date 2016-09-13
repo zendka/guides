@@ -10,6 +10,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 include_once __DIR__ . '/post_types.php';
 include_once __DIR__ . '/menu_widget.php';
+include_once __DIR__ . '/admin_settings.php';
 
 /**
  * Get Guides countries
