@@ -41,8 +41,9 @@ add_action( 'admin_init', function () {
  */
 function guides_countries_validate( $input ) {
 	$countries = get_option( 'guides_countries' );
-	if ( ! empty( $input ) && !in_array($input, $countries)) {
+	if ( ! empty( $input ) && ! in_array( $input, $countries ) ) {
 		$countries[] = $input;
+		sort( $countries, SORT_NATURAL | SORT_FLAG_CASE );
 	}
 
 	return $countries;
@@ -72,4 +73,3 @@ function guides_countries_field() {
 	echo "<p><input name='guides_countries' type='text' id='guides_countries' placeholder='New Country' 
 			class='regular-text code'></p>";
 }
-
