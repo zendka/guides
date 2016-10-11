@@ -53,8 +53,7 @@ function guides_countries_validate( $input ) {
  * Settings section callback
  */
 function guides_settings_section() {
-	echo 'You cannot edit or delete existing countries. It is a security measure to avoid loss of data.<br />';
-	echo 'You can however add a new country bellow:';
+	echo 'You can add a new country bellow:';
 }
 
 /**

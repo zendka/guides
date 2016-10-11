@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register Guides post types
+ * Get Guides post types
  *
  * @return array Array with the keys representing the labels and the values representing the post types
  */
