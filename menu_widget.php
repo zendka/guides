@@ -76,7 +76,6 @@ add_action( 'widgets_init', function () {
 	register_widget( 'Guides_Menu_Widget' );
 } );
 
-
 /*
  * Invalidate menu widget cache when updating posts
  */
