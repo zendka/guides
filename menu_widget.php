@@ -35,6 +35,17 @@ class Guides_Menu_Widget extends WP_Widget {
 		echo self::get_menu( $post_type );
 
 		echo $args['after_widget'];
+?>
+<script>
+	( function( $ ) {
+		$( ".widget_guides_menu_widget a" ).each( function() {
+			if ( $( this ).attr('href') == window.location.href ) {
+				$( this ).addClass( "current" );
+			}
+		});
+	} )( jQuery );
+</script>
+<?php
 	}
 
 	/**
