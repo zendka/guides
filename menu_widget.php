@@ -72,3 +72,13 @@ class Guides_Menu_Widget extends WP_Widget {
 add_action( 'widgets_init', function () {
 	register_widget( 'Guides_Menu_Widget' );
 } );
+
+
+/*
+ * Invalidate menu widget cache when updating posts
+ */
+add_action( 'save_post', 'guides_invalidate_menu_cache' );
+function guides_invalidate_menu_cache( $post_id ) {
+	$transient_key = 'guides_menu_' . get_post_type( $post_id );
+	delete_transient( $transient_key );
+}
