@@ -39,13 +39,16 @@ class Guides_Menu_Widget extends WP_Widget {
 		// Add class "current" to the currently active link
 		?>
 		<script>
-			(function ($) {
-				$(".widget_guides_menu_widget a").each(function () {
-					if ($(this).attr('href') == window.location.href) {
-						$(this).addClass("current");
+			var guides_menus = document.getElementsByClassName('widget_guides_menu_widget');
+
+			for (var i=0; i<guides_menus.length; i++) {
+				var links = guides_menus[i].getElementsByTagName('a');
+				for (var j=0; j<links.length; j++) {
+					if (window.location.href == links[j].href) {
+						links[j].className += " current";
 					}
-				});
-			})(jQuery);
+				}
+			}
 		</script>
 		<?php
 	}
